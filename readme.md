@@ -57,7 +57,7 @@ using (var conn = new MySqlConnection(_connectString)) {
         .ExecuteAffrows();
 }
 ```
-更多前往Wiki：[《Update 删除数据文档》](https://github.com/2881099/FreeSql/wiki/%e5%88%a0%e9%99%a4)
+更多前往Wiki：[《Delete 删除数据文档》](https://github.com/2881099/FreeSql/wiki/%e5%88%a0%e9%99%a4)
 
 ### 事务
 
