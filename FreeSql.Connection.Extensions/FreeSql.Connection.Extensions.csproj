@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Version>0.4.10</Version>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>YeXiangQin</Authors>
+		<Description>Mysql, postgresql, sqlserver, Oracle and SQLite connection object extension methods.</Description>
+		<PackageProjectUrl>https://github.com/2881099/FreeSql.Connection.Extensions</PackageProjectUrl>
+		<PackageTags>FreeSql ORM SqlConnection</PackageTags>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\FreeSql\FreeSql\FreeSql.csproj" />
+	</ItemGroup>
+
+</Project>
