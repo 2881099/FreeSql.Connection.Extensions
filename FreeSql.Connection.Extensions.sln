@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeSql.Connection.Extensions", "FreeSql.Connection.Extensions\FreeSql.Connection.Extensions.csproj", "{9FC04B5F-1D4D-4136-AF84-F1B8A8C628DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeSql.Connection.Extensions", "FreeSql.Connection.Extensions\FreeSql.Connection.Extensions.csproj", "{9FC04B5F-1D4D-4136-AF84-F1B8A8C628DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreeSql", "..\FreeSql\FreeSql\FreeSql.csproj", "{76C2D604-2140-4935-B9B5-E07E05317584}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{7DAE8526-DB29-44D3-AC7D-D0125185EE2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{7DAE8526-DB29-44D3-AC7D-D0125185EE2A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{CBDA239C-F589-4CCB-A3AC-4A0B623E5FF7}"
 	ProjectSection(SolutionItems) = preProject
@@ -36,18 +34,6 @@ Global
 		{9FC04B5F-1D4D-4136-AF84-F1B8A8C628DE}.Release|x64.Build.0 = Release|Any CPU
 		{9FC04B5F-1D4D-4136-AF84-F1B8A8C628DE}.Release|x86.ActiveCfg = Release|Any CPU
 		{9FC04B5F-1D4D-4136-AF84-F1B8A8C628DE}.Release|x86.Build.0 = Release|Any CPU
-		{76C2D604-2140-4935-B9B5-E07E05317584}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76C2D604-2140-4935-B9B5-E07E05317584}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76C2D604-2140-4935-B9B5-E07E05317584}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{76C2D604-2140-4935-B9B5-E07E05317584}.Debug|x64.Build.0 = Debug|Any CPU
-		{76C2D604-2140-4935-B9B5-E07E05317584}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{76C2D604-2140-4935-B9B5-E07E05317584}.Debug|x86.Build.0 = Debug|Any CPU
-		{76C2D604-2140-4935-B9B5-E07E05317584}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76C2D604-2140-4935-B9B5-E07E05317584}.Release|Any CPU.Build.0 = Release|Any CPU
-		{76C2D604-2140-4935-B9B5-E07E05317584}.Release|x64.ActiveCfg = Release|Any CPU
-		{76C2D604-2140-4935-B9B5-E07E05317584}.Release|x64.Build.0 = Release|Any CPU
-		{76C2D604-2140-4935-B9B5-E07E05317584}.Release|x86.ActiveCfg = Release|Any CPU
-		{76C2D604-2140-4935-B9B5-E07E05317584}.Release|x86.Build.0 = Release|Any CPU
 		{7DAE8526-DB29-44D3-AC7D-D0125185EE2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DAE8526-DB29-44D3-AC7D-D0125185EE2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DAE8526-DB29-44D3-AC7D-D0125185EE2A}.Debug|x64.ActiveCfg = Debug|Any CPU
