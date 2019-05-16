@@ -19,12 +19,12 @@ class TestConnectionExt {
     public string title { get; set; }
     public DateTime createTime { get; set; } = DateTime.Now;
 
-	public List<Detail> Details { get; set; }
+    public List<Detail> Details { get; set; }
 }
 class Detail {
     public Guid id { get; set; }
 
-	public Guid ParentId { get; set; }
+    public Guid ParentId { get; set; }
     public DateTime createTime { get; set; } = DateTime.Now;
 }
 ```
@@ -33,9 +33,9 @@ class Detail {
 ```csharp
 using (var conn = new MySqlConnection(_connectString)) {
     var list = conn.Select<TestConnectionExt>()
-		.Where(a => a.id == item.id)
-		.IncludeMany(a => a.Details.Where(b => b.ParentId == a.id))
-		.ToList();
+        .Where(a => a.id == item.id)
+        .IncludeMany(a => a.Details.Where(b => b.ParentId == a.id))
+        .ToList();
 }
 ```
 更多前往Wiki：[《Select 查询数据文档》](https://github.com/2881099/FreeSql/wiki/%e6%9f%a5%e8%af%a2)
