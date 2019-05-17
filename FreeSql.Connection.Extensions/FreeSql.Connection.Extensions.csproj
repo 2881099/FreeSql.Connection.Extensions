@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<Version>0.5.19</Version>
+		<Version>0.5.21</Version>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>YeXiangQin</Authors>
 		<Description>Mysql, postgresql, sqlserver, Oracle and SQLite connection object extension methods.</Description>
@@ -11,7 +11,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="FreeSql" Version="0.5.19" />
+	  <PackageReference Include="FreeSql" Version="0.5.21" />
 	</ItemGroup>
 
 </Project>
