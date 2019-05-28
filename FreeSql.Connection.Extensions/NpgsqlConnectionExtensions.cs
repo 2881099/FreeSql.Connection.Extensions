@@ -1,5 +1,4 @@
 ﻿using FreeSql;
-using Microsoft.Extensions.Logging;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,6 @@ using System.Data;
 public static class NpgsqlConnectionExtensions {
 
 	static Lazy<IFreeSql<NpgsqlConnection>> _lazyOrm = new Lazy<IFreeSql<NpgsqlConnection>>(() => new FreeSqlBuilder()
-		.UseLogger(new LoggerFactory().CreateLogger("FreeSql.NpgsqlConnectionExtensions"))
 		.UseConnectionString(DataType.PostgreSQL, null)
 		.Build<NpgsqlConnection>());
 	static IFreeSql<NpgsqlConnection> _curd => _lazyOrm.Value;

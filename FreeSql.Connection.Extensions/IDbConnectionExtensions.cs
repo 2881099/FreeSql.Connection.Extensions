@@ -1,5 +1,4 @@
 ﻿using FreeSql;
-using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using Npgsql;
 using Oracle.ManagedDataAccess.Client;

@@ -1,5 +1,4 @@
 ﻿using FreeSql;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +7,6 @@ using System.Data.SqlClient;
 public static class SqlConnectionExtensions {
 
 	static Lazy<IFreeSql<SqlConnection>> _lazyOrm = new Lazy<IFreeSql<SqlConnection>>(() => new FreeSqlBuilder()
-		.UseLogger(new LoggerFactory().CreateLogger("FreeSql.SqlConnectionExtensions"))
 		.UseConnectionString(DataType.SqlServer, null)
 		.Build<SqlConnection>());
 	static IFreeSql<SqlConnection> _curd => _lazyOrm.Value;

@@ -1,5 +1,4 @@
 ﻿using FreeSql;
-using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,6 @@ using System.Data;
 public static class MySqlConnectionExtensions {
 
 	static Lazy<IFreeSql<MySqlConnection>> _lazyOrm = new Lazy<IFreeSql<MySqlConnection>>(() => new FreeSqlBuilder()
-		.UseLogger(new LoggerFactory().CreateLogger("FreeSql.MySqlConnectionExtensions"))
 		.UseConnectionString(DataType.MySql, null)
 		.Build<MySqlConnection>());
 	static IFreeSql<MySqlConnection> _curd => _lazyOrm.Value;

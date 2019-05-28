@@ -1,5 +1,4 @@
 ﻿using FreeSql;
-using Microsoft.Extensions.Logging;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,6 @@ using System.Data;
 public static class OracleConnectionExtensions {
 
 	static Lazy<IFreeSql<OracleConnection>> _lazyOrm = new Lazy<IFreeSql<OracleConnection>>(() => new FreeSqlBuilder()
-		.UseLogger(new LoggerFactory().CreateLogger("FreeSql.OracleConnectionExtensions"))
 		.UseConnectionString(DataType.Oracle, null)
 		.Build<OracleConnection>());
 	static IFreeSql<OracleConnection> _curd => _lazyOrm.Value;
