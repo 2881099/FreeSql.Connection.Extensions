@@ -6,9 +6,7 @@ using System.Data;
 
 public static class NpgsqlConnectionExtensions {
 
-	static Lazy<IFreeSql<NpgsqlConnection>> _lazyOrm = new Lazy<IFreeSql<NpgsqlConnection>>(() => new FreeSqlBuilder()
-		.UseConnectionString(DataType.PostgreSQL, null)
-		.Build<NpgsqlConnection>());
+	static Lazy<IFreeSql<NpgsqlConnection>> _lazyOrm = new Lazy<IFreeSql<NpgsqlConnection>>(() => new FreeSql.PostgreSQL.PostgreSQLProvider<NpgsqlConnection>(null , null));
 	static IFreeSql<NpgsqlConnection> _curd => _lazyOrm.Value;
 
 	public static ISelect<T1> Select<T1>(this NpgsqlConnection that) where T1 : class => _curd.Select<T1>().WithConnection(that);

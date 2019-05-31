@@ -6,9 +6,7 @@ using System.Data.SQLite;
 
 public static class SQLiteConnectionExtensions {
 
-	static Lazy<IFreeSql<SQLiteConnection>> _lazyOrm = new Lazy<IFreeSql<SQLiteConnection>>(() => new FreeSqlBuilder()
-		.UseConnectionString(DataType.Sqlite, null)
-		.Build<SQLiteConnection>());
+	static Lazy<IFreeSql<SQLiteConnection>> _lazyOrm = new Lazy<IFreeSql<SQLiteConnection>>(() => new FreeSql.Sqlite.SqliteProvider<SQLiteConnection>(null , null));
 	static IFreeSql<SQLiteConnection> _curd => _lazyOrm.Value;
 
 	public static ISelect<T1> Select<T1>(this SQLiteConnection that) where T1 : class => _curd.Select<T1>().WithConnection(that);

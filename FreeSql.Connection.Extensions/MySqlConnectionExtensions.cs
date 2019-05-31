@@ -6,9 +6,7 @@ using System.Data;
 
 public static class MySqlConnectionExtensions {
 
-	static Lazy<IFreeSql<MySqlConnection>> _lazyOrm = new Lazy<IFreeSql<MySqlConnection>>(() => new FreeSqlBuilder()
-		.UseConnectionString(DataType.MySql, null)
-		.Build<MySqlConnection>());
+	static Lazy<IFreeSql<MySqlConnection>> _lazyOrm = new Lazy<IFreeSql<MySqlConnection>>(() => new FreeSql.MySql.MySqlProvider<MySqlConnection>(null , null));
 	static IFreeSql<MySqlConnection> _curd => _lazyOrm.Value;
 
 	public static ISelect<T1> Select<T1>(this MySqlConnection that) where T1 : class => _curd.Select<T1>().WithConnection(that);

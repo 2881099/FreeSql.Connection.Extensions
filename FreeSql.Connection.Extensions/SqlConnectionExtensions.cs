@@ -6,9 +6,7 @@ using System.Data.SqlClient;
 
 public static class SqlConnectionExtensions {
 
-	static Lazy<IFreeSql<SqlConnection>> _lazyOrm = new Lazy<IFreeSql<SqlConnection>>(() => new FreeSqlBuilder()
-		.UseConnectionString(DataType.SqlServer, null)
-		.Build<SqlConnection>());
+	static Lazy<IFreeSql<SqlConnection>> _lazyOrm = new Lazy<IFreeSql<SqlConnection>>(() => new FreeSql.SqlServer.SqlServerProvider<SqlConnection>(null , null));
 	static IFreeSql<SqlConnection> _curd => _lazyOrm.Value;
 
 	public static ISelect<T1> Select<T1>(this SqlConnection that) where T1 : class => _curd.Select<T1>().WithConnection(that);

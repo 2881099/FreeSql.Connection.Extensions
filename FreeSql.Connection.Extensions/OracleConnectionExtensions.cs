@@ -6,9 +6,7 @@ using System.Data;
 
 public static class OracleConnectionExtensions {
 
-	static Lazy<IFreeSql<OracleConnection>> _lazyOrm = new Lazy<IFreeSql<OracleConnection>>(() => new FreeSqlBuilder()
-		.UseConnectionString(DataType.Oracle, null)
-		.Build<OracleConnection>());
+	static Lazy<IFreeSql<OracleConnection>> _lazyOrm = new Lazy<IFreeSql<OracleConnection>>(() => new FreeSql.Oracle.OracleProvider<OracleConnection>(null , null));
 	static IFreeSql<OracleConnection> _curd => _lazyOrm.Value;
 
 	public static ISelect<T1> Select<T1>(this OracleConnection that) where T1 : class => _curd.Select<T1>().WithConnection(that);
