@@ -1,111 +1,65 @@
 ﻿using FreeSql;
-using MySql.Data.MySqlClient;
-using Npgsql;
-using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
-using System.Data.SQLite;
 
 public static class DbConnectionExtensions {
 
-	public static ISelect<T1> Select<T1>(this DbConnection that) where T1 : class {
-		if (that is SqlConnection) return (that as SqlConnection)?.Select<T1>();
-		if (that is MySqlConnection) return (that as MySqlConnection)?.Select<T1>();
-		if (that is NpgsqlConnection) return (that as NpgsqlConnection)?.Select<T1>();
-		if (that is OracleConnection) return (that as OracleConnection)?.Select<T1>();
-		if (that is SQLiteConnection) return (that as SQLiteConnection)?.Select<T1>();
-		throw new NotImplementedException();
-	}
-	public static ISelect<T1> Select<T1>(this DbConnection that, object dywhere) where T1 : class {
-		if (that is SqlConnection) return (that as SqlConnection)?.Select<T1>(dywhere);
-		if (that is MySqlConnection) return (that as MySqlConnection)?.Select<T1>(dywhere);
-		if (that is NpgsqlConnection) return (that as NpgsqlConnection)?.Select<T1>(dywhere);
-		if (that is OracleConnection) return (that as OracleConnection)?.Select<T1>(dywhere);
-		if (that is SQLiteConnection) return (that as SQLiteConnection)?.Select<T1>(dywhere);
-		throw new NotImplementedException();
-	}
-	public static IInsert<T1> Insert<T1>(this DbConnection that) where T1 : class {
-		if (that is SqlConnection) return (that as SqlConnection)?.Insert<T1>();
-		if (that is MySqlConnection) return (that as MySqlConnection)?.Insert<T1>();
-		if (that is NpgsqlConnection) return (that as NpgsqlConnection)?.Insert<T1>();
-		if (that is OracleConnection) return (that as OracleConnection)?.Insert<T1>();
-		if (that is SQLiteConnection) return (that as SQLiteConnection)?.Insert<T1>();
-		throw new NotImplementedException();
-	}
-	public static IInsert<T1> Insert<T1>(this DbConnection that, T1 source) where T1 : class {
-		if (that is SqlConnection) return (that as SqlConnection)?.Insert<T1>(source);
-		if (that is MySqlConnection) return (that as MySqlConnection)?.Insert<T1>(source);
-		if (that is NpgsqlConnection) return (that as NpgsqlConnection)?.Insert<T1>(source);
-		if (that is OracleConnection) return (that as OracleConnection)?.Insert<T1>(source);
-		if (that is SQLiteConnection) return (that as SQLiteConnection)?.Insert<T1>(source);
-		throw new NotImplementedException();
-	}
-	public static IInsert<T1> Insert<T1>(this DbConnection that, T1[] source) where T1 : class {
-		if (that is SqlConnection) return (that as SqlConnection)?.Insert<T1>(source);
-		if (that is MySqlConnection) return (that as MySqlConnection)?.Insert<T1>(source);
-		if (that is NpgsqlConnection) return (that as NpgsqlConnection)?.Insert<T1>(source);
-		if (that is OracleConnection) return (that as OracleConnection)?.Insert<T1>(source);
-		if (that is SQLiteConnection) return (that as SQLiteConnection)?.Insert<T1>(source);
-		throw new NotImplementedException();
-	}
-	public static IInsert<T1> Insert<T1>(this DbConnection that, IEnumerable<T1> source) where T1 : class {
-		if (that is SqlConnection) return (that as SqlConnection)?.Insert<T1>(source);
-		if (that is MySqlConnection) return (that as MySqlConnection)?.Insert<T1>(source);
-		if (that is NpgsqlConnection) return (that as NpgsqlConnection)?.Insert<T1>(source);
-		if (that is OracleConnection) return (that as OracleConnection)?.Insert<T1>(source);
-		if (that is SQLiteConnection) return (that as SQLiteConnection)?.Insert<T1>(source);
-		throw new NotImplementedException();
-	}
-	public static IUpdate<T1> Update<T1>(this DbConnection that) where T1 : class {
-		if (that is SqlConnection) return (that as SqlConnection)?.Update<T1>();
-		if (that is MySqlConnection) return (that as MySqlConnection)?.Update<T1>();
-		if (that is NpgsqlConnection) return (that as NpgsqlConnection)?.Update<T1>();
-		if (that is OracleConnection) return (that as OracleConnection)?.Update<T1>();
-		if (that is SQLiteConnection) return (that as SQLiteConnection)?.Update<T1>();
-		throw new NotImplementedException();
-	}
-	public static IUpdate<T1> Update<T1>(this DbConnection that, object dywhere) where T1 : class {
-		if (that is SqlConnection) return (that as SqlConnection)?.Update<T1>(dywhere);
-		if (that is MySqlConnection) return (that as MySqlConnection)?.Update<T1>(dywhere);
-		if (that is NpgsqlConnection) return (that as NpgsqlConnection)?.Update<T1>(dywhere);
-		if (that is OracleConnection) return (that as OracleConnection)?.Update<T1>(dywhere);
-		if (that is SQLiteConnection) return (that as SQLiteConnection)?.Update<T1>(dywhere);
-		throw new NotImplementedException();
-	}
-	public static IDelete<T1> Delete<T1>(this DbConnection that) where T1 : class {
-		if (that is SqlConnection) return (that as SqlConnection)?.Delete<T1>();
-		if (that is MySqlConnection) return (that as MySqlConnection)?.Delete<T1>();
-		if (that is NpgsqlConnection) return (that as NpgsqlConnection)?.Delete<T1>();
-		if (that is OracleConnection) return (that as OracleConnection)?.Delete<T1>();
-		if (that is SQLiteConnection) return (that as SQLiteConnection)?.Delete<T1>();
-		throw new NotImplementedException();
-	}
-	public static IDelete<T1> Delete<T1>(this DbConnection that, object dywhere) where T1 : class {
-		if (that is SqlConnection) return (that as SqlConnection)?.Delete<T1>(dywhere);
-		if (that is MySqlConnection) return (that as MySqlConnection)?.Delete<T1>(dywhere);
-		if (that is NpgsqlConnection) return (that as NpgsqlConnection)?.Delete<T1>(dywhere);
-		if (that is OracleConnection) return (that as OracleConnection)?.Delete<T1>(dywhere);
-		if (that is SQLiteConnection) return (that as SQLiteConnection)?.Delete<T1>(dywhere);
-		throw new NotImplementedException();
-	}
+    static Dictionary<Type, IFreeSql> _dicCurd = new Dictionary<Type, IFreeSql>();
+    static object _dicCurdLock = new object();
+    internal static IFreeSql GetCurd(Type dbconType)
+    {
+        var connType = dbconType.UnderlyingSystemType;
+        if (_dicCurd.TryGetValue(connType, out var fsql)) return fsql;
 
-	public static List<T> Query<T>(this DbConnection that, string cmdText, object parms = null) {
-		if (that is SqlConnection) return (that as SqlConnection)?.Query<T>(cmdText, parms);
-		if (that is MySqlConnection) return (that as MySqlConnection)?.Query<T>(cmdText, parms);
-		if (that is NpgsqlConnection) return (that as NpgsqlConnection)?.Query<T>(cmdText, parms);
-		if (that is OracleConnection) return (that as OracleConnection)?.Query<T>(cmdText, parms);
-		if (that is SQLiteConnection) return (that as SQLiteConnection)?.Query<T>(cmdText, parms);
-		throw new NotImplementedException();
-	}
-	public static List<T> Query<T>(this DbConnection that, CommandType cmdType, string cmdText, params MySqlParameter[] cmdParms) {
-		if (that is SqlConnection) return (that as SqlConnection)?.Query<T>(cmdType, cmdText, cmdParms);
-		if (that is MySqlConnection) return (that as MySqlConnection)?.Query<T>(cmdType, cmdText, cmdParms);
-		if (that is NpgsqlConnection) return (that as NpgsqlConnection)?.Query<T>(cmdType, cmdText, cmdParms);
-		if (that is OracleConnection) return (that as OracleConnection)?.Query<T>(cmdType, cmdText, cmdParms);
-		if (that is SQLiteConnection) return (that as SQLiteConnection)?.Query<T>(cmdType, cmdText, cmdParms);
-		throw new NotImplementedException();
-	}
+        Type providerType = null;
+        switch (connType.Name)
+        {
+            case "MySqlConnection":
+                providerType = Type.GetType("FreeSql.MySql.MySqlProvider`1,FreeSql.Provider.MySql")?.MakeGenericType(connType);
+                if (providerType == null) providerType = Type.GetType("FreeSql.MySql.MySqlProvider`1,FreeSql.Provider.MySqlConnector")?.MakeGenericType(connType);
+                if (providerType == null) throw new Exception("缺少 FreeSql 数据库实现包：FreeSql.Provider.MySql.dll，可前往 nuget 下载");
+                break;
+            case "SqlConnection":
+                providerType = Type.GetType("FreeSql.SqlServer.SqlServerProvider`1,FreeSql.Provider.SqlServer")?.MakeGenericType(connType);
+                if (providerType == null) throw new Exception("缺少 FreeSql 数据库实现包：FreeSql.Provider.SqlServer.dll，可前往 nuget 下载");
+                break;
+            case "NpgsqlConnection":
+                providerType = Type.GetType("FreeSql.PostgreSQL.PostgreSQLProvider`1,FreeSql.Provider.PostgreSQL")?.MakeGenericType(connType);
+                if (providerType == null) throw new Exception("缺少 FreeSql 数据库实现包：FreeSql.Provider.PostgreSQL.dll，可前往 nuget 下载");
+                break;
+            case "OracleConnection":
+                providerType = Type.GetType("FreeSql.Oracle.OracleProvider`1,FreeSql.Provider.Oracle")?.MakeGenericType(connType);
+                if (providerType == null) throw new Exception("缺少 FreeSql 数据库实现包：FreeSql.Provider.Oracle.dll，可前往 nuget 下载");
+                break;
+            case "SQLiteConnection":
+                providerType = Type.GetType("FreeSql.Sqlite.SqliteProvider`1,FreeSql.Provider.Sqlite")?.MakeGenericType(connType);
+                if (providerType == null) throw new Exception("缺少 FreeSql 数据库实现包：FreeSql.Provider.Sqlite.dll，可前往 nuget 下载");
+                break;
+            default:
+                throw new Exception("未实现");
+        }
+        lock (_dicCurdLock)
+        {
+            if (_dicCurd.TryGetValue(connType, out fsql)) return fsql;
+            lock (_dicCurdLock)
+                _dicCurd.Add(connType, fsql = Activator.CreateInstance(providerType, new object[] { null, null }) as IFreeSql);
+        }
+        return fsql;
+    }
+
+    public static ISelect<T1> Select<T1>(this DbConnection that) where T1 : class => GetCurd(that?.GetType()).Select<T1>().WithConnection(that);
+	public static ISelect<T1> Select<T1>(this DbConnection that, object dywhere) where T1 : class => GetCurd(that?.GetType()).Select<T1>(dywhere).WithConnection(that);
+    public static IInsert<T1> Insert<T1>(this DbConnection that) where T1 : class => GetCurd(that?.GetType()).Insert<T1>().WithConnection(that);
+    public static IInsert<T1> Insert<T1>(this DbConnection that, T1 source) where T1 : class => GetCurd(that?.GetType()).Insert<T1>(source).WithConnection(that);
+    public static IInsert<T1> Insert<T1>(this DbConnection that, T1[] source) where T1 : class => GetCurd(that?.GetType()).Insert<T1>(source).WithConnection(that);
+    public static IInsert<T1> Insert<T1>(this DbConnection that, IEnumerable<T1> source) where T1 : class => GetCurd(that?.GetType()).Insert<T1>(source).WithConnection(that);
+    public static IUpdate<T1> Update<T1>(this DbConnection that) where T1 : class => GetCurd(that?.GetType()).Update<T1>().WithConnection(that);
+    public static IUpdate<T1> Update<T1>(this DbConnection that, object dywhere) where T1 : class => GetCurd(that?.GetType()).Update<T1>(dywhere).WithConnection(that);
+    public static IDelete<T1> Delete<T1>(this DbConnection that) where T1 : class => GetCurd(that?.GetType()).Delete<T1>().WithConnection(that);
+    public static IDelete<T1> Delete<T1>(this DbConnection that, object dywhere) where T1 : class => GetCurd(that?.GetType()).Delete<T1>(dywhere).WithConnection(that);
+
+    public static List<T> Query<T>(this DbConnection that, string cmdText, object parms = null) => GetCurd(that?.GetType()).Ado.Query<T>(that, null, cmdText, parms);
+    public static List<T> Query<T>(this DbConnection that, CommandType cmdType, string cmdText, params DbParameter[] cmdParms) => GetCurd(that?.GetType()).Ado.Query<T>(that, null, cmdType, cmdText, cmdParms);
 }

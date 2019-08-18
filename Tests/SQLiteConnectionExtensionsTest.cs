@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Data.SQLite;
 using Xunit;
 
@@ -65,7 +67,7 @@ namespace Tests.SQLiteConnectionExtensions {
 		public void Query() {
 			var list = new List<TestConnectionExt>();
 			var affrows = 0;
-			using (var conn = new SQLiteConnection(_connectString)) {
+			using (DbConnection conn = new SQLiteConnection(_connectString)) {
 				var item = new TestConnectionExt { title = "testquery" };
 				affrows = conn.Insert<TestConnectionExt>().AppendData(item).ExecuteAffrows();
 				Assert.Equal(1, affrows);
