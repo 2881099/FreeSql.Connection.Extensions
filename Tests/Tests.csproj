@@ -1,20 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netcoreapp2.1</TargetFramework>
-
+		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FreeSql.Provider.MySql" Version="0.9.7" />
-		<PackageReference Include="FreeSql.Provider.Oracle" Version="0.9.7" />
-		<PackageReference Include="FreeSql.Provider.PostgreSQL" Version="0.9.7" />
-		<PackageReference Include="FreeSql.Provider.Sqlite" Version="0.9.7" />
-		<PackageReference Include="FreeSql.Provider.SqlServer" Version="0.9.7" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
-		<PackageReference Include="xunit" Version="2.4.0" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+		<PackageReference Include="FreeSql.Provider.MySql" Version="1.0.0" />
+		<PackageReference Include="FreeSql.Provider.Oracle" Version="1.0.0" />
+		<PackageReference Include="FreeSql.Provider.PostgreSQL" Version="1.0.0" />
+		<PackageReference Include="FreeSql.Provider.Sqlite" Version="1.0.0" />
+		<PackageReference Include="FreeSql.Provider.SqlServer" Version="1.0.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0-preview-20191216-02" />
+    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
 	</ItemGroup>
 
 	<ItemGroup>

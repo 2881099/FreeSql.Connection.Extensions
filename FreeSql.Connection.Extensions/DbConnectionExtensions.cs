@@ -44,7 +44,7 @@ public static class DbConnectionExtensions {
         {
             if (_dicCurd.TryGetValue(connType, out fsql)) return fsql;
             lock (_dicCurdLock)
-                _dicCurd.Add(connType, fsql = Activator.CreateInstance(providerType, new object[] { null, null }) as IFreeSql);
+                _dicCurd.Add(connType, fsql = Activator.CreateInstance(providerType, new object[] { null, null, null }) as IFreeSql);
         }
         return fsql;
     }
