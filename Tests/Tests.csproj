@@ -6,11 +6,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FreeSql.Provider.MySql" Version="1.5.0" />
-		<PackageReference Include="FreeSql.Provider.Oracle" Version="1.5.0" />
-		<PackageReference Include="FreeSql.Provider.PostgreSQL" Version="1.5.0" />
-		<PackageReference Include="FreeSql.Provider.Sqlite" Version="1.5.0" />
-		<PackageReference Include="FreeSql.Provider.SqlServer" Version="1.5.0" />
+		<PackageReference Include="FreeSql.Provider.MySql" Version="1.6.0" />
+		<PackageReference Include="FreeSql.Provider.Oracle" Version="1.6.0" />
+		<PackageReference Include="FreeSql.Provider.PostgreSQL" Version="1.6.0" />
+		<PackageReference Include="FreeSql.Provider.Sqlite" Version="1.6.0" />
+		<PackageReference Include="FreeSql.Provider.SqlServer" Version="1.6.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0-preview-20191216-02" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
