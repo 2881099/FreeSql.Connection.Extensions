@@ -1,3 +1,6 @@
+
+## 提示：该功能库不再维护，CRUD 扩展方法已转移至 FreeSql.dll v1.8.0 中，为了与 Dapper.Query 不冲突已移除 Query 扩展方法。
+
 这是 [FreeSql](https://github.com/2881099/FreeSql) 衍生出来的扩展包，实现（Mysql/postgresql/sqlserver/Oracle/SQLite）数据库连接对象扩展方法，像 Dapper 一样的使用习惯（QQ群：4336577）。
 
 > dotnet add package FreeSql.Connection.Extensions

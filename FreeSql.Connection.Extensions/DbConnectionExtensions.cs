@@ -41,6 +41,10 @@ public static class DbConnectionExtensions {
                 providerType = Type.GetType("FreeSql.Dameng.DamengProvider`1,FreeSql.Provider.Dameng")?.MakeGenericType(connType);
                 if (providerType == null) throw new Exception("缺少 FreeSql 数据库实现包：FreeSql.Provider.Dameng.dll，可前往 nuget 下载");
                 break;
+            case "OscarConnection":
+                providerType = Type.GetType("FreeSql.ShenTong.ShenTongProvider`1,FreeSql.Provider.ShenTong")?.MakeGenericType(connType);
+                if (providerType == null) throw new Exception("缺少 FreeSql 数据库实现包：FreeSql.Provider.ShenTong.dll，可前往 nuget 下载");
+                break;
             default:
                 throw new Exception("未实现");
         }
